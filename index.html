@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Cricket Training Camp</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background: #f4fff4;
+        }
+
+        /* Header */
+        .header {
+            background: #008b2f;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        /* Hero */
+        .hero {
+            background: url("https://i.ibb.co/rsxJ2jN/grass.jpg") center/cover no-repeat;
+            height: 330px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-content {
+            background: rgba(0,0,0,0.55);
+            padding: 25px 40px;
+            border-radius: 12px;
+            text-align: center;
+            color: white;
+        }
+
+        /* Form */
+        .form-section {
+            text-align: center;
+            padding: 35px 20px;
+        }
+        .form-box {
+            width: 90%;
+            max-width: 420px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+        .form-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border: 1px solid #aaa;
+        }
+        .form-box button {
+            width: 100%;
+            padding: 12px;
+            background: #00b33c;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+        .form-box button:hover {
+            background: #008f2e;
+        }
+
+        /* History Box */
+        #historyBox {
+            width: 90%;
+            max-width: 500px;
+            margin: 25px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .history-item {
+            background: #eaffea;
+            margin: 10px 0;
+            padding: 12px;
+            border-left: 4px solid #008b2f;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Delete Button */
+        .delete-btn {
+            background: #ff4d4d;
+            border: none;
+            color: white;
+            padding: 7px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        .delete-btn:hover {
+            background: #d90000;
+        }
+    </style>
+</head>
+<div id="header"></div>
+<body>
+
+<!-- Header
+<header class="header">
+    <div class="logo">CRICKET CAMP</div>
+</header> -->
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>For Private coaching</h1>
+        <h2>Coach Bundiya Yash : +91 92747 59991</h2>
+        <h2>Coach Bhatt Manav : +91 72111 39212</h2>
+        <h2>Coach Chauhan Dharmesh : +91 9510078439</h2>
+        <p>Join the best cricket training camp in Vadodara</p>
+    </div>
+</section>
+
+<!-- Registration -->
+<section class="form-section">
+    <h2>Register Now</h2>
+
+    <form id="regForm" class="form-box">
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <input type="number" id="number" placeholder="Enter mobile number" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="msg"></p>
+</section>
+
+<!-- History Section -->
+<div id="historyBox">
+    <h3 style="text-align:center;">Registration History</h3>
+    <div id="historyList"></div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    window.onload = loadHistory;
+
+    document.getElementById("regForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        let name = document.getElementById("name").value.trim();
+        let number = document.getElementById("number").value.trim();
+        let msgBox = document.getElementById("msg");
+
+        if (name === "" || number === "") {
+            msgBox.style.color = "red";
+            msgBox.innerText = "Please fill all fields!";
+            return;
+        }
+
+        if (number.length != 10) {
+            msgBox.style.color = "red";
+            msgBox.innerText = "Enter valid 10-digit mobile number!";
+            return;
+        }
+
+        let entry = { name, number };
+        let history = JSON.parse(localStorage.getItem("cricket_history")) || [];
+        history.push(entry);
+        localStorage.setItem("cricket_history", JSON.stringify(history));
+
+        msgBox.style.color = "green";
+        msgBox.innerText = "Registration Successful!";
+        
+        document.getElementById("regForm").reset();
+        loadHistory(); 
+    });
+
+    // Load History
+    function loadHistory() {
+        let history = JSON.parse(localStorage.getItem("cricket_history")) || [];
+        let list = document.getElementById("historyList");
+        list.innerHTML = "";
+
+        history.forEach((item, index) => {
+            list.innerHTML += `
+                <div class="history-item">
+                    <div>
+                        <strong>${index + 1}. ${item.name}</strong><br>
+                        <small>${item.number}</small>
+                    </div>
+                    <button class="delete-btn" onclick="deleteEntry(${index})">Delete</button>
+                </div>
+            `;
+        });
+    }
+
+    // Delete Entry
+    function deleteEntry(index) {
+        let history = JSON.parse(localStorage.getItem("cricket_history")) || [];
+        history.splice(index, 1);
+        localStorage.setItem("cricket_history", JSON.stringify(history));
+        loadHistory();
+    }
+</script>
+<div id="footer"></div>
+<script src="index.js"></script>
+</body>
+</html>

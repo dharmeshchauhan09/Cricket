@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Services | Cricket Training Camp</title>
+    <style>
+        /* SERVICES PAGE */
+.services-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(#2a2a72, #009ffd);
+    color: #fff;
+}
+.services-hero h1 {
+    font-size: 2.6em;
+    animation: slideDown 1s ease;
+}
+.services-hero p {
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+.services-section {
+    padding: 40px 20px;
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.service-card {
+    background: white;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+    transition: 0.3s;
+    animation: fadeInUp 1s ease both;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 22px rgba(0,0,0,0.15);
+}
+
+.service-card h2 {
+    margin-bottom: 10px;
+    color: #007bff;
+}
+.service-card p {
+    opacity: 0.95;
+}
+
+    </style>
+</head>
+<body>
+<div id="header"></div>
+
+<!-- <header>
+    <div class="logo">CRICKET CAMP</div>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a class="active" href="services.html">Services</a>
+    </nav>
+</header> -->
+
+<section class="services-hero">
+    <h1>Our Training Services</h1>
+    <p>Professional Coaching • Advanced Techniques • Guaranteed Growth</p>
+</section>
+
+<section class="services-section">
+
+    <div class="service-card">
+        <h2>🏏 Professional Batting Coaching</h2>
+        <p>
+            Improve footwork, timing, stroke selection, and power-hitting with guidance from 
+            certified batting coaches.
+        </p>
+    </div>
+
+    <div class="service-card">
+        <h2>🎯 Bowling Practice Sessions</h2>
+        <p>
+            Learn fast bowling, spin variations, accuracy drills, and develop your bowling 
+            strategy with expert trainers.
+        </p>
+    </div>
+
+    <div class="service-card">
+        <h2>🛡️ Advanced Fielding Training</h2>
+        <p>
+            Sharpen your reflexes, catching, diving, and throwing with high-intensity fielding 
+            sessions.
+        </p>
+    </div>
+
+    <div class="service-card">
+        <h2>💪 Fitness & Strength Conditioning</h2>
+        <p>
+            Build stamina, core strength, and agility with daily fitness routines designed for 
+            cricket-specific movements.
+        </p>
+    </div>
+
+    <div class="service-card">
+        <h2>📊 Video Analysis & Performance Review</h2>
+        <p>
+            Using video analysis software, we identify strengths, weaknesses, and help you improve 
+            your technical skills.
+        </p>
+    </div>
+
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+    // Animate service cards one-by-one
+    const cards = document.querySelectorAll(".service-card");
+
+    cards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.15}s`;
+    });
+
+});
+</script>
+<div id="footer"></div>
+<script src="index.js"></script>
+</body>
+</html>

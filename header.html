@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cricket Camp</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --primary-bg: #07182e;      /* Premium Dark Blue */
+      --accent: #00eaff;          /* Neon Cricket Blue */
+      --text-light: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #eef2f4;
+    }
+
+    /* ====== HEADER ====== */
+    header {
+      background-color: var(--primary-bg);
+      color: var(--text-light);
+      padding: 18px 20px;
+      text-align: center; 
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center; 
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ====== MOBILE MENU BUTTON ====== */
+    .menu-toggle {
+      position: absolute;
+      left: 20px;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: var(--text-light);
+      cursor: pointer;
+      display: block;
+    }
+
+    /* ====== NAVIGATION MENU ====== */
+    .navbar {
+      background-color: var(--primary-bg);
+      display: none;
+      flex-direction: column;
+      text-align: center;
+      padding-bottom: 15px;
+      animation: fadeSlide 0.3s ease;
+    }
+
+    .navbar a {
+      color: var(--text-light);
+      text-decoration: none;
+      padding: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      transition: 0.3s;
+      border-bottom: 1px solid #0d2a4d;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+      background-color: var(--accent);
+      color: #000;
+    }
+
+    @keyframes fadeSlide {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* ====== DESKTOP VIEW ====== */
+    @media (min-width: 768px) {
+      .menu-toggle { display: none; }
+
+      header {
+        justify-content: center;
+      }
+
+      .navbar {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: center;
+        gap: 30px;
+        padding: 12px 0;
+      }
+
+      .navbar a {
+        border: none;
+        padding: 8px 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <span class="logo">CRICKET CAMP</span>
+  </header>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+  </nav>
+
+  <script>
+    function toggleMenu() {
+      const navbar = document.getElementById('navbar');
+      navbar.style.display = navbar.style.display === "flex" ? "none" : "flex";
+    }
+  </script>
+
+</body>
+</html>
