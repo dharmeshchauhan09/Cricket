@@ -11,17 +11,21 @@
             margin: 0;
             padding: 0;
             font-family: "Poppins", sans-serif;
-            background: #f4fff4;
+
+            /* ⭐ Full Page Background Image */
+            background: url("cricket ground.jpg") center/cover no-repeat;
+            background-attachment: fixed;
         }
 
         /* Header */
         .header {
-            background: #008b2f;
+            background: rgba(0,139,47,0.85);
             color: white;
             padding: 15px 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            backdrop-filter: blur(4px);
         }
         .logo {
             font-size: 26px;
@@ -30,194 +34,92 @@
 
         /* Hero */
         .hero {
-            background: url("https://i.ibb.co/rsxJ2jN/grass.jpg") center/cover no-repeat;
-            height: 330px;
+            height: 360px;
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-        .hero-content {
-            background: rgba(0,0,0,0.55);
-            padding: 25px 40px;
-            border-radius: 12px;
-            text-align: center;
-            color: white;
+            padding: 20px;
         }
 
-        /* Form */
-        .form-section {
+        .hero-content {
+            background: rgba(0,0,0,0.55);
+            padding: 30px 40px;
+            border-radius: 14px;
             text-align: center;
-            padding: 35px 20px;
-        }
-        .form-box {
+            color: white;
             width: 90%;
-            max-width: 420px;
-            margin: auto;
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+            max-width: 450px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+            backdrop-filter: blur(3px);
         }
-        .form-box input {
-            width: 100%;
-            padding: 12px;
-            margin: 12px 0;
-            border-radius: 8px;
-            border: 1px solid #aaa;
+
+        /* Hero Image (small round image inside card) */
+        .hero-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            margin-bottom: 12px;
         }
-        .form-box button {
-            width: 100%;
-            padding: 12px;
+
+        /* Register Button */
+        .register-btn {
+            margin-top: 20px;
+            padding: 12px 28px;
             background: #00b33c;
             border: none;
             border-radius: 8px;
             color: white;
             font-size: 17px;
             cursor: pointer;
-        }
-        .form-box button:hover {
-            background: #008f2e;
-        }
-
-        /* History Box */
-        #historyBox {
-            width: 90%;
-            max-width: 500px;
-            margin: 25px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .history-item {
-            background: #eaffea;
-            margin: 10px 0;
-            padding: 12px;
-            border-left: 4px solid #008b2f;
-            border-radius: 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Delete Button */
-        .delete-btn {
-            background: #ff4d4d;
-            border: none;
-            color: white;
-            padding: 7px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 14px;
             transition: 0.3s;
+            font-weight: 600;
         }
-        .delete-btn:hover {
-            background: #d90000;
+        .register-btn:hover {
+            background: #008f2e;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 500px) {
+            .hero-content {
+                padding: 25px;
+            }
+            .hero-img {
+                width: 90px;
+                height: 90px;
+            }
         }
     </style>
+
 </head>
-<div id="header"></div>
+
 <body>
 
-<!-- Header
-<header class="header">
-    <div class="logo">CRICKET CAMP</div>
-</header> -->
+<div id="header"></div>
 
-<!-- Hero -->
+<!-- HERO SECTION -->
 <section class="hero">
     <div class="hero-content">
-        <h1>For Private coaching</h1>
-        <h2>Coach Bundiya Yash : +91 92747 59991</h2>
-        <h2>Coach Bhatt Manav : +91 72111 39212</h2>
-        <h2>Coach Chauhan Dharmesh : +91 9510078439</h2>
+
+        <!-- ⭐ Hero Image -->
+        <img src="cricket ground.jpg" class="hero-img" alt="Cricket">
+
+        <h1>For Private Coaching</h1>
+        <h4>Coach Bundiya Yash : +91 92747 59991</h4>
+        <h4>Coach Bhatt Manav : +91 72111 39212</h4>
+        <h4>Chauhan Dharmesh : +91 9510078439</h4>
         <p>Join the best cricket training camp in Vadodara</p>
+
+        <button onclick="window.location.href='register.html'" class="register-btn">
+            Register Now
+        </button>
     </div>
 </section>
 
-<!-- Registration -->
-<section class="form-section">
-    <h2>Register Now</h2>
-
-    <form id="regForm" class="form-box">
-        <input type="text" id="name" placeholder="Enter your name" required>
-        <input type="number" id="number" placeholder="Enter mobile number" required>
-        <button type="submit">Submit</button>
-    </form>
-
-    <p id="msg"></p>
-</section>
-
-<!-- History Section -->
-<div id="historyBox">
-    <h3 style="text-align:center;">Registration History</h3>
-    <div id="historyList"></div>
-</div>
-
-<!-- JavaScript -->
-<script>
-    window.onload = loadHistory;
-
-    document.getElementById("regForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-
-        let name = document.getElementById("name").value.trim();
-        let number = document.getElementById("number").value.trim();
-        let msgBox = document.getElementById("msg");
-
-        if (name === "" || number === "") {
-            msgBox.style.color = "red";
-            msgBox.innerText = "Please fill all fields!";
-            return;
-        }
-
-        if (number.length != 10) {
-            msgBox.style.color = "red";
-            msgBox.innerText = "Enter valid 10-digit mobile number!";
-            return;
-        }
-
-        let entry = { name, number };
-        let history = JSON.parse(localStorage.getItem("cricket_history")) || [];
-        history.push(entry);
-        localStorage.setItem("cricket_history", JSON.stringify(history));
-
-        msgBox.style.color = "green";
-        msgBox.innerText = "Registration Successful!";
-        
-        document.getElementById("regForm").reset();
-        loadHistory(); 
-    });
-
-    // Load History
-    function loadHistory() {
-        let history = JSON.parse(localStorage.getItem("cricket_history")) || [];
-        let list = document.getElementById("historyList");
-        list.innerHTML = "";
-
-        history.forEach((item, index) => {
-            list.innerHTML += `
-                <div class="history-item">
-                    <div>
-                        <strong>${index + 1}. ${item.name}</strong><br>
-                        <small>${item.number}</small>
-                    </div>
-                    <button class="delete-btn" onclick="deleteEntry(${index})">Delete</button>
-                </div>
-            `;
-        });
-    }
-
-    // Delete Entry
-    function deleteEntry(index) {
-        let history = JSON.parse(localStorage.getItem("cricket_history")) || [];
-        history.splice(index, 1);
-        localStorage.setItem("cricket_history", JSON.stringify(history));
-        loadHistory();
-    }
-</script>
 <div id="footer"></div>
+
 <script src="index.js"></script>
+
 </body>
 </html>

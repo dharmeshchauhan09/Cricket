@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Register - Cricket Camp</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+
+            /* FULL PAGE BACKGROUND IMAGE */
+            background: url("bet.jpg") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        /* Dark Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.55);
+            backdrop-filter: blur(3px);
+        }
+
+        /* Form Section */
+        .form-section {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .title {
+            color: white;
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .form-box {
+            width: 90%;
+            max-width: 420px;
+            margin: auto;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .form-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            background: rgba(255,255,255,0.85);
+        }
+
+        .form-box button {
+            width: 100%;
+            padding: 12px;
+            background: #00b33c;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 17px;
+            cursor: pointer;
+        }
+
+        .form-box button:hover {
+            background: #008f2e;
+        }
+
+        /* View History Button */
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin: 20px auto;
+            width: 220px;
+            padding: 12px;
+            background: #008b2f;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .back-btn:hover {
+            background: #006f25;
+        }
+
+        #msg {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Dark Overlay over Full Image -->
+<div class="overlay"></div>
+
+<section class="form-section">
+    <h2 class="title">Register Now</h2>
+
+    <form id="regForm" class="form-box">
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <input type="number" id="number" placeholder="Enter mobile number" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="msg"></p>
+
+    <a href="history.html" class="back-btn">View Registration History</a>
+</section>
+
+<script>
+    document.getElementById("regForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        let name = document.getElementById("name").value.trim();
+        let number = document.getElementById("number").value.trim();
+        let msgBox = document.getElementById("msg");
+
+        if (name === "" || number === "") {
+            msgBox.style.color = "red";
+            msgBox.innerText = "Please fill all fields!";
+            return;
+        }
+
+        if (number.length != 10) {
+            msgBox.style.color = "red";
+            msgBox.innerText = "Enter valid 10-digit mobile number!";
+            return;
+        }
+
+        let entry = { name, number };
+        let history = JSON.parse(localStorage.getItem("cricket_history")) || [];
+        history.push(entry);
+        localStorage.setItem("cricket_history", JSON.stringify(history));
+
+        msgBox.style.color = "lime";
+        msgBox.innerText = "Registration Successful!";
+
+        document.getElementById("regForm").reset();
+    });
+</script>
+
+<script src="index.js"></script>
+
+</body>
+</html>

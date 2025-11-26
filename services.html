@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>Services | Cricket Training Camp</title>
+
     <style>
-        /* SERVICES PAGE */
+/* HERO SECTION WITH BACKGROUND IMAGE */
 .services-hero {
     text-align: center;
-    padding: 60px 20px;
-    background: linear-gradient(#2a2a72, #009ffd);
+    padding: 80px 20px;
+    background: 
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+        url("cricket2.jpg") center/cover no-repeat;
     color: #fff;
+    border-bottom: 5px solid #00eaff;
 }
+
 .services-hero h1 {
     font-size: 2.6em;
     animation: slideDown 1s ease;
@@ -22,6 +27,7 @@
     opacity: 0.9;
 }
 
+/* SERVICES GRID */
 .services-section {
     padding: 40px 20px;
     max-width: 1100px;
@@ -31,10 +37,12 @@
     gap: 25px;
 }
 
+/* SERVICE CARD BOX */
 .service-card {
     background: white;
-    padding: 25px;
+    padding: 0;
     border-radius: 18px;
+    overflow: hidden;
     box-shadow: 0 5px 18px rgba(0,0,0,0.1);
     transition: 0.3s;
     animation: fadeInUp 1s ease both;
@@ -45,27 +53,43 @@
     box-shadow: 0 10px 22px rgba(0,0,0,0.15);
 }
 
-.service-card h2 {
+/* SERVICE IMAGE */
+.service-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+/* TEXT PART */
+.service-content {
+    padding: 20px;
+}
+
+.service-content h2 {
     margin-bottom: 10px;
     color: #007bff;
 }
-.service-card p {
+
+.service-content p {
     opacity: 0.95;
 }
 
+/* ANIMATIONS */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
     </style>
 </head>
-<body>
-<div id="header"></div>
 
-<!-- <header>
-    <div class="logo">CRICKET CAMP</div>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a class="active" href="services.html">Services</a>
-    </nav>
-</header> -->
+<body>
+
+<div id="header"></div>
 
 <section class="services-hero">
     <h1>Our Training Services</h1>
@@ -75,60 +99,58 @@
 <section class="services-section">
 
     <div class="service-card">
-        <h2>🏏 Professional Batting Coaching</h2>
-        <p>
-            Improve footwork, timing, stroke selection, and power-hitting with guidance from 
-            certified batting coaches.
-        </p>
+        <img src="betting.webp" alt="">
+        <div class="service-content">
+            <h2>🏏 Professional Batting Coaching</h2>
+            <p>Improve footwork, timing, stroke selection, and power-hitting with guidance from certified batting coaches.</p>
+        </div>
     </div>
 
     <div class="service-card">
-        <h2>🎯 Bowling Practice Sessions</h2>
-        <p>
-            Learn fast bowling, spin variations, accuracy drills, and develop your bowling 
-            strategy with expert trainers.
-        </p>
+        <img src="bowling.webp" alt="">
+        <div class="service-content">
+            <h2>🎯 Bowling Practice Sessions</h2>
+            <p>Learn fast bowling, spin variations, accuracy drills, and develop your bowling strategy with expert trainers.</p>
+        </div>
     </div>
 
     <div class="service-card">
-        <h2>🛡️ Advanced Fielding Training</h2>
-        <p>
-            Sharpen your reflexes, catching, diving, and throwing with high-intensity fielding 
-            sessions.
-        </p>
+        <img src="fieling.webp" alt="">
+        <div class="service-content">
+            <h2>🛡️ Advanced Fielding Training</h2>
+            <p>Sharpen reflexes, catching, diving, and throwing with high-intensity fielding sessions.</p>
+        </div>
     </div>
 
     <div class="service-card">
-        <h2>💪 Fitness & Strength Conditioning</h2>
-        <p>
-            Build stamina, core strength, and agility with daily fitness routines designed for 
-            cricket-specific movements.
-        </p>
+        <img src="fitness.jpg" alt="">
+        <div class="service-content">
+            <h2>💪 Fitness & Strength Conditioning</h2>
+            <p>Build stamina, core strength, and agility with daily fitness routines designed for cricket-specific movements.</p>
+        </div>
     </div>
 
     <div class="service-card">
-        <h2>📊 Video Analysis & Performance Review</h2>
-        <p>
-            Using video analysis software, we identify strengths, weaknesses, and help you improve 
-            your technical skills.
-        </p>
+        <img src="video.webp" alt="">
+        <div class="service-content">
+            <h2>📊 Video Analysis & Review</h2>
+            <p>Using video analysis software, we identify strengths and help you improve technical skills.</p>
+        </div>
     </div>
 
 </section>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-
-    // Animate service cards one-by-one
+document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll(".service-card");
-
     cards.forEach((card, index) => {
         card.style.animationDelay = `${index * 0.15}s`;
     });
-
 });
 </script>
+
 <div id="footer"></div>
 <script src="index.js"></script>
+
 </body>
 </html>
